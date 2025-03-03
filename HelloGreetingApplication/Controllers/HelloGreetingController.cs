@@ -101,11 +101,48 @@ namespace HelloGreetingApplication.Controllers
         }
         [HttpGet]
         [Route("GetGreet")]
-        public IActionResult GetGreet(string name)
+        public IActionResult GetGreeting(string? firstName, string? lastName)
         {
-                string result = _greetingBL.Greeting(name);
-                return Ok(result);
-        
+            try
+            {
+                ResponseModel<string> responseModel = new ResponseModel<string>();
+                string greetingMessage = string.Empty;
+
+                if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
+                {
+                    greetingMessage = $"Hello Sir/Mam, {firstName} {lastName}";
+                }
+                else if (!string.IsNullOrEmpty(firstName))
+                {
+                    greetingMessage = $"Hello Sir/Mam, {firstName}";
+                }
+                else if (!string.IsNullOrEmpty(lastName))
+                {
+                    greetingMessage = $"Hello Mr/Mrs, {lastName}";
+                }
+                else
+                {
+                    greetingMessage = "Hello World";
+                }
+
+                responseModel.Success = true;
+                responseModel.Message = "Greeting Generated Successfully";
+                responseModel.Data = greetingMessage;
+
+                logger.Info($"Greeting Message: {greetingMessage}");
+
+                return Ok(responseModel);
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Exception Occurred: {ex.Message}");
+                return StatusCode(500, "Something went wrong: " + ex.Message);
+            }
         }
     }
 }
+
+
+
+
+

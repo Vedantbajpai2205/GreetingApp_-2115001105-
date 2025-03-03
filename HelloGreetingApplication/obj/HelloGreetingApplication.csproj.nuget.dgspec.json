@@ -274,7 +274,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\UC2\\GreetingApp_-2115001105-\\ModelLayer\\ModelLayer.csproj": {
+                "projectPath": "C:\\UC2\\GreetingApp_-2115001105-\\ModelLayer\\ModelLayer.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

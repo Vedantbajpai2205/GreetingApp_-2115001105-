@@ -1,17 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using RepositoryLayer.Interface;
+﻿using RepositoryLayer.Interface;
+using System;
+using ModelLayer.Model;
+using NLog;
 
-namespace RepositoryLayer.Service
+namespace RepositoryLayer.Services
 {
     public class GreetingRL : IGreetingRL
     {
-        public string GetHello(string name)
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+
+        public string Greeting(string firstName, string lastName)
         {
-            return name;
+            string greetingMessage = string.Empty;
+
+            if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
+            {
+                greetingMessage = $"Hello {firstName} {lastName}";
+            }
+            else if (!string.IsNullOrEmpty(firstName))
+            {
+                greetingMessage = $"Hello {firstName}";
+            }
+            else if (!string.IsNullOrEmpty(lastName))
+            {
+                greetingMessage = $"Hello {lastName}";
+            }
+            else
+            {
+                greetingMessage = "Hello World";
+            }
+
+            _logger.Info($"Generated Greeting: {greetingMessage}");
+            return greetingMessage;
         }
     }
 }

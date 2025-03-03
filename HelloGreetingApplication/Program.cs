@@ -1,10 +1,10 @@
 using BuisnessLayer.Interface;
-using BuisnessLayer.Service;
+using BusinessLayer.Services;
 using NLog;
 using NLog.Config;
 using NLog.Web;
 using RepositoryLayer.Interface;
-using RepositoryLayer.Service;
+using RepositoryLayer.Services;
 
     var builder = WebApplication.CreateBuilder(args);
 
