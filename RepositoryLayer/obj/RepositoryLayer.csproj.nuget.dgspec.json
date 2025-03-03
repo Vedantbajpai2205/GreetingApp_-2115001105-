@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\VEDANT SIR\\source\\repos\\HelloGreetingApplication\\RepositoryLayer\\RepositoryLayer.csproj": {}
+    "C:\\UC2\\GreetingApp_-2115001105-\\RepositoryLayer\\RepositoryLayer.csproj": {}
   },
   "projects": {
-    "C:\\Users\\VEDANT SIR\\source\\repos\\HelloGreetingApplication\\RepositoryLayer\\RepositoryLayer.csproj": {
+    "C:\\UC2\\GreetingApp_-2115001105-\\RepositoryLayer\\RepositoryLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\VEDANT SIR\\source\\repos\\HelloGreetingApplication\\RepositoryLayer\\RepositoryLayer.csproj",
+        "projectUniqueName": "C:\\UC2\\GreetingApp_-2115001105-\\RepositoryLayer\\RepositoryLayer.csproj",
         "projectName": "RepositoryLayer",
-        "projectPath": "C:\\Users\\VEDANT SIR\\source\\repos\\HelloGreetingApplication\\RepositoryLayer\\RepositoryLayer.csproj",
+        "projectPath": "C:\\UC2\\GreetingApp_-2115001105-\\RepositoryLayer\\RepositoryLayer.csproj",
         "packagesPath": "C:\\Users\\VEDANT SIR\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\VEDANT SIR\\source\\repos\\HelloGreetingApplication\\RepositoryLayer\\obj\\",
+        "outputPath": "C:\\UC2\\GreetingApp_-2115001105-\\RepositoryLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

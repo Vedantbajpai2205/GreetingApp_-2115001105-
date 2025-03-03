@@ -10,3 +10,16 @@ C:\Users\VEDANT SIR\source\repos\HelloGreetingApplication\RepositoryLayer\obj\De
 C:\Users\VEDANT SIR\source\repos\HelloGreetingApplication\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.pdb
 C:\Users\VEDANT SIR\source\repos\HelloGreetingApplication\RepositoryLayer\obj\Debug\net6.0\ref\RepositoryLayer.dll
 C:\Users\VEDANT SIR\source\repos\HelloGreetingApplication\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.csproj.AssemblyReference.cache
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\bin\Debug\net6.0\RepositoryLayer.deps.json
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\bin\Debug\net6.0\RepositoryLayer.dll
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\bin\Debug\net6.0\RepositoryLayer.pdb
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.csproj.AssemblyReference.cache
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.GeneratedMSBuildEditorConfig.editorconfig
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.AssemblyInfoInputs.cache
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.AssemblyInfo.cs
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.csproj.CoreCompileInputs.cache
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.sourcelink.json
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.dll
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\refint\RepositoryLayer.dll
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\RepositoryLayer.pdb
+C:\UC2\GreetingApp_-2115001105-\RepositoryLayer\obj\Debug\net6.0\ref\RepositoryLayer.dll

@@ -59,3 +59,119 @@
 2025-03-03 20:38:21.6865 Info Executed action HelloGreetingApplication.Controllers.HelloGreetingController.Get (HelloGreetingApplication) in 40.0725ms 
 2025-03-03 20:38:21.6865 Info Executed endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.Get (HelloGreetingApplication)' 
 2025-03-03 20:38:21.6865 Info Request finished HTTP/2 GET https://localhost:7245/HelloGreeting - - - 200 - application/json;+charset=utf-8 126.8295ms 
+2025-03-04 00:00:47.6602 Info Now listening on: https://localhost:7245 
+2025-03-04 00:00:47.7572 Info Now listening on: http://localhost:5176 
+2025-03-04 00:00:48.0132 Info Application started. Press Ctrl+C to shut down. 
+2025-03-04 00:00:48.0132 Info Hosting environment: Development 
+2025-03-04 00:00:48.0132 Info Content root path: C:\UC2\GreetingApp_-2115001105-\HelloGreetingApplication\ 
+2025-03-04 00:00:48.9120 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.html - - 
+2025-03-04 00:00:49.6374 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.html - - - 200 - text/html;charset=utf-8 730.8613ms 
+2025-03-04 00:00:49.7035 Info Request starting HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-04 00:00:49.7035 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.js - - 
+2025-03-04 00:00:49.7035 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.js - - - 200 - application/javascript;charset=utf-8 4.4143ms 
+2025-03-04 00:00:49.7127 Info Request starting HTTP/2 GET https://localhost:7245/_vs/browserLink - - 
+2025-03-04 00:00:49.7127 Info Request finished HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - - 200 12380 application/javascript;+charset=utf-8 14.3957ms 
+2025-03-04 00:00:49.8700 Info Request finished HTTP/2 GET https://localhost:7245/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 157.5854ms 
+2025-03-04 00:00:49.9571 Info Request starting HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - 
+2025-03-04 00:00:49.9696 Info Request finished HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 12.4429ms 
+2025-03-04 00:16:39.0315 Info Now listening on: https://localhost:7245 
+2025-03-04 00:16:39.1212 Info Now listening on: http://localhost:5176 
+2025-03-04 00:16:39.2707 Info Application started. Press Ctrl+C to shut down. 
+2025-03-04 00:16:39.2707 Info Hosting environment: Development 
+2025-03-04 00:16:39.2707 Info Content root path: C:\UC2\GreetingApp_-2115001105-\HelloGreetingApplication\ 
+2025-03-04 00:16:39.8792 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.html - - 
+2025-03-04 00:16:40.4851 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.html - - - 200 - text/html;charset=utf-8 610.7773ms 
+2025-03-04 00:16:40.5428 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.js - - 
+2025-03-04 00:16:40.5428 Info Request starting HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-04 00:16:40.5428 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.js - - - 200 - application/javascript;charset=utf-8 4.9821ms 
+2025-03-04 00:16:40.5428 Info Request starting HTTP/2 GET https://localhost:7245/_vs/browserLink - - 
+2025-03-04 00:16:40.5562 Info Request finished HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - - 200 12380 application/javascript;+charset=utf-8 13.3538ms 
+2025-03-04 00:16:40.6806 Info Request finished HTTP/2 GET https://localhost:7245/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 127.8785ms 
+2025-03-04 00:16:40.7767 Info Request starting HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - 
+2025-03-04 00:16:40.7897 Error An unhandled exception has occurred while executing the request. Swashbuckle.AspNetCore.SwaggerGen.SwaggerGeneratorException: Ambiguous HTTP method for action - HelloGreetingApplication.Controllers.HelloGreetingController.GetGreet (HelloGreetingApplication). Actions require an explicit HttpMethod binding for Swagger/OpenAPI 3.0
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.PrepareGenerateOperation(IGrouping`2 group)
+   at System.Linq.Enumerable.SelectEnumerableIterator`2.MoveNext()
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GenerateOperationsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository, Func`3 operationsGenerator)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GeneratePathsAsync(IEnumerable`1 apiDescriptions, SchemaRepository schemaRepository)
+   at Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenerator.GetSwaggerAsync(String documentName, String host, String basePath)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2025-03-04 00:16:40.8107 Info Request finished HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - - 500 - text/plain;+charset=utf-8 33.9346ms 
+2025-03-04 00:21:11.7890 Info Now listening on: https://localhost:7245 
+2025-03-04 00:21:11.8745 Info Now listening on: http://localhost:5176 
+2025-03-04 00:21:12.1036 Info Application started. Press Ctrl+C to shut down. 
+2025-03-04 00:21:12.1036 Info Hosting environment: Development 
+2025-03-04 00:21:12.1036 Info Content root path: C:\UC2\GreetingApp_-2115001105-\HelloGreetingApplication\ 
+2025-03-04 00:21:12.5240 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.html - - 
+2025-03-04 00:21:13.1826 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.html - - - 200 - text/html;charset=utf-8 664.0747ms 
+2025-03-04 00:21:13.2385 Info Request starting HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-04 00:21:13.2385 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.js - - 
+2025-03-04 00:21:13.2443 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.js - - - 200 - application/javascript;charset=utf-8 5.7256ms 
+2025-03-04 00:21:13.2443 Info Request starting HTTP/2 GET https://localhost:7245/_vs/browserLink - - 
+2025-03-04 00:21:13.2817 Info Request finished HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - - 200 12380 application/javascript;+charset=utf-8 43.1465ms 
+2025-03-04 00:21:13.4149 Info Request finished HTTP/2 GET https://localhost:7245/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 166.6250ms 
+2025-03-04 00:21:13.4992 Info Request starting HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - 
+2025-03-04 00:21:13.5103 Info Request finished HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 11.1545ms 
+2025-03-04 00:21:34.1057 Info Now listening on: https://localhost:7245 
+2025-03-04 00:21:34.2078 Info Now listening on: http://localhost:5176 
+2025-03-04 00:21:34.3203 Info Application started. Press Ctrl+C to shut down. 
+2025-03-04 00:21:34.3214 Info Hosting environment: Development 
+2025-03-04 00:21:34.3214 Info Content root path: C:\UC2\GreetingApp_-2115001105-\HelloGreetingApplication\ 
+2025-03-04 00:21:35.0400 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.html - - 
+2025-03-04 00:21:35.6362 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.html - - - 200 - text/html;charset=utf-8 602.5168ms 
+2025-03-04 00:21:35.6879 Info Request starting HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-04 00:21:35.6879 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.js - - 
+2025-03-04 00:21:35.6879 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.js - - - 200 - application/javascript;charset=utf-8 5.6904ms 
+2025-03-04 00:21:35.7101 Info Request starting HTTP/2 GET https://localhost:7245/_vs/browserLink - - 
+2025-03-04 00:21:35.7156 Info Request finished HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - - 200 12380 application/javascript;+charset=utf-8 27.7184ms 
+2025-03-04 00:21:35.8431 Info Request finished HTTP/2 GET https://localhost:7245/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 132.9523ms 
+2025-03-04 00:21:35.9217 Info Request starting HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - 
+2025-03-04 00:21:35.9306 Info Request finished HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 9.0715ms 
+2025-03-04 00:22:07.2803 Info Request starting HTTP/2 GET https://localhost:7245/HelloGreeting/GetGreet?name=Hello%20World - - 
+2025-03-04 00:22:07.3017 Info Executing endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetGreet (HelloGreetingApplication)' 
+2025-03-04 00:22:07.5043 Info Route matched with {action = "GetGreet", controller = "HelloGreeting"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetGreet(System.String) on controller HelloGreetingApplication.Controllers.HelloGreetingController (HelloGreetingApplication). 
+2025-03-04 00:22:07.5247 Info Executed action HelloGreetingApplication.Controllers.HelloGreetingController.GetGreet (HelloGreetingApplication) in 9.2251ms 
+2025-03-04 00:22:07.5247 Info Executed endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetGreet (HelloGreetingApplication)' 
+2025-03-04 00:22:07.5393 Error An unhandled exception has occurred while executing the request. System.InvalidOperationException: Unable to resolve service for type 'BuisnessLayer.Interface.IGreetingBL' while attempting to activate 'HelloGreetingApplication.Controllers.HelloGreetingController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.GetService(IServiceProvider sp, Type type, Type requiredBy, Boolean isDefaultParameterRequired)
+   at lambda_method3(Closure , IServiceProvider , Object[] )
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerActivatorProvider.<>c__DisplayClass7_0.<CreateActivator>b__0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.Invoke(HttpContext context)
+2025-03-04 00:22:07.6944 Info Request finished HTTP/2 GET https://localhost:7245/HelloGreeting/GetGreet?name=Hello%20World - - - 500 - text/plain;+charset=utf-8 414.1144ms 
+2025-03-04 00:26:02.1115 Info Now listening on: https://localhost:7245 
+2025-03-04 00:26:02.2452 Info Now listening on: http://localhost:5176 
+2025-03-04 00:26:02.6110 Info Application started. Press Ctrl+C to shut down. 
+2025-03-04 00:26:02.6110 Info Hosting environment: Development 
+2025-03-04 00:26:02.6110 Info Content root path: C:\UC2\GreetingApp_-2115001105-\HelloGreetingApplication\ 
+2025-03-04 00:26:02.7375 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.html - - 
+2025-03-04 00:26:03.3134 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.html - - - 200 - text/html;charset=utf-8 580.8350ms 
+2025-03-04 00:26:03.3667 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.js - - 
+2025-03-04 00:26:03.3667 Info Request starting HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-04 00:26:03.3707 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.js - - - 200 - application/javascript;charset=utf-8 3.9457ms 
+2025-03-04 00:26:03.3707 Info Request starting HTTP/2 GET https://localhost:7245/_vs/browserLink - - 
+2025-03-04 00:26:03.3707 Info Request finished HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - - 200 12380 application/javascript;+charset=utf-8 12.4034ms 
+2025-03-04 00:26:03.4935 Info Request finished HTTP/2 GET https://localhost:7245/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 118.6253ms 
+2025-03-04 00:26:03.5652 Info Request starting HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - 
+2025-03-04 00:26:03.5764 Info Request finished HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 11.1458ms 
+2025-03-04 00:26:21.0760 Info Request starting HTTP/2 GET https://localhost:7245/HelloGreeting/GetGreet?name=Hello%21World - - 
+2025-03-04 00:26:21.0760 Info Executing endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetGreet (HelloGreetingApplication)' 
+2025-03-04 00:26:21.1327 Info Route matched with {action = "GetGreet", controller = "HelloGreeting"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetGreet(System.String) on controller HelloGreetingApplication.Controllers.HelloGreetingController (HelloGreetingApplication). 
+2025-03-04 00:26:21.1461 Info This is Info Message. 
+2025-03-04 00:26:21.1495 Error This is Error Message. 
+2025-03-04 00:26:21.1495 Warn This is Warning Message. 
+2025-03-04 00:26:21.2510 Info Executing OkObjectResult, writing value of type 'System.String'. 
+2025-03-04 00:26:21.2637 Info Executed action HelloGreetingApplication.Controllers.HelloGreetingController.GetGreet (HelloGreetingApplication) in 120.3003ms 
+2025-03-04 00:26:21.2637 Info Executed endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetGreet (HelloGreetingApplication)' 
+2025-03-04 00:26:21.2637 Info Request finished HTTP/2 GET https://localhost:7245/HelloGreeting/GetGreet?name=Hello%21World - - - 200 - text/plain;+charset=utf-8 188.7829ms 

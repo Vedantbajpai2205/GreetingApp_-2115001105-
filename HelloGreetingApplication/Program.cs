@@ -1,13 +1,20 @@
+using BuisnessLayer.Interface;
+using BuisnessLayer.Service;
 using NLog;
 using NLog.Config;
 using NLog.Web;
+using RepositoryLayer.Interface;
+using RepositoryLayer.Service;
 
     var builder = WebApplication.CreateBuilder(args);
 
     // Add services to the container.
 
     builder.Services.AddControllers();
-    builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddScoped<IGreetingBL, GreetingBL>();
+builder.Services.AddScoped<IGreetingRL, GreetingRL>();
+
+builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
     //logger using nlog

@@ -8,5 +8,6 @@ namespace RepositoryLayer.Interface
 {
     public interface IGreetingRL
     {
+        public string GetHello(string name);
     }
 }

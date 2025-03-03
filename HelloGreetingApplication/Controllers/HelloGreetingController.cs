@@ -1,3 +1,4 @@
+using BuisnessLayer.Interface;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 using NLog;
@@ -10,11 +11,13 @@ namespace HelloGreetingApplication.Controllers
     [Route("[controller]")]
     public class HelloGreetingController : ControllerBase
     {
-
+        
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly IGreetingBL _greetingBL;
 
-        public HelloGreetingController()
+        public HelloGreetingController(IGreetingBL greetingBL)
         {
+            _greetingBL = greetingBL;
             logger.Info("This is Info Message.");
             logger.Error("This is Error Message.");
             logger.Debug("This is Debug Message.");
@@ -96,7 +99,13 @@ namespace HelloGreetingApplication.Controllers
             responseModel.Data = $"Key: {requestModel.key}, Deleted Successfully.";
             return Ok(responseModel);
         }
-
-
+        [HttpGet]
+        [Route("GetGreet")]
+        public IActionResult GetGreet(string name)
+        {
+                string result = _greetingBL.Greeting(name);
+                return Ok(result);
+        
+        }
     }
 }
