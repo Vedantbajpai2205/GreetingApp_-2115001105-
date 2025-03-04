@@ -62,6 +62,17 @@ namespace RepositoryLayer.Services
             }
             return null; 
         }
+        public bool DeleteGreeting(int id)
+        {
+            var entity = _context.GreetMessages.FirstOrDefault(g => g.Id == id);
+            if (entity != null)
+            {
+                _context.GreetMessages.Remove(entity);
+                _context.SaveChanges();
+                return true;
+            }
+            return false; 
+        }
 
         public string Greeting(UserNameModel nameModel)
         {

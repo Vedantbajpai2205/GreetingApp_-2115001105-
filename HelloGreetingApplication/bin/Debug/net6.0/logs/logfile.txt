@@ -1089,3 +1089,52 @@ FROM [GreetMessages] AS [g]
 2025-03-04 23:33:40.9554 Info Executed action HelloGreetingApplication.Controllers.HelloGreetingController.GetAllGreetings (HelloGreetingApplication) in 17.7205ms 
 2025-03-04 23:33:40.9554 Info Executed endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetAllGreetings (HelloGreetingApplication)' 
 2025-03-04 23:33:40.9554 Info Request finished HTTP/2 GET https://localhost:7245/HelloGreeting/GetAllGreetings - - - 200 - application/json;+charset=utf-8 38.4838ms 
+2025-03-04 23:44:45.2219 Info Now listening on: https://localhost:7245 
+2025-03-04 23:44:45.2683 Info Now listening on: http://localhost:5176 
+2025-03-04 23:44:45.3342 Info Application started. Press Ctrl+C to shut down. 
+2025-03-04 23:44:45.3342 Info Hosting environment: Development 
+2025-03-04 23:44:45.3342 Info Content root path: C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\ 
+2025-03-04 23:44:46.2887 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.html - - 
+2025-03-04 23:44:46.7414 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.html - - - 200 - text/html;charset=utf-8 456.9823ms 
+2025-03-04 23:44:46.7708 Info Request starting HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-04 23:44:46.7708 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.js - - 
+2025-03-04 23:44:46.7708 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.js - - - 200 - application/javascript;charset=utf-8 3.0641ms 
+2025-03-04 23:44:46.7785 Info Request starting HTTP/2 GET https://localhost:7245/_vs/browserLink - - 
+2025-03-04 23:44:46.7785 Info Request finished HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - - 200 12380 application/javascript;+charset=utf-8 8.7980ms 
+2025-03-04 23:44:46.8900 Info Request finished HTTP/2 GET https://localhost:7245/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 111.5553ms 
+2025-03-04 23:44:47.0397 Info Request starting HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - 
+2025-03-04 23:44:47.0500 Info Request finished HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 10.4116ms 
+2025-03-04 23:44:58.8741 Info Request starting HTTP/2 DELETE https://localhost:7245/HelloGreeting/DeleteGreeting/1 - - 
+2025-03-04 23:44:58.8741 Info Executing endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.DeleteGreeting (HelloGreetingApplication)' 
+2025-03-04 23:44:58.9189 Info Route matched with {action = "DeleteGreeting", controller = "HelloGreeting"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult DeleteGreeting(Int32) on controller HelloGreetingApplication.Controllers.HelloGreetingController (HelloGreetingApplication). 
+2025-03-04 23:44:59.2528 Info This is Info Message. 
+2025-03-04 23:44:59.2528 Error This is Error Message. 
+2025-03-04 23:44:59.2528 Warn This is Warning Message. 
+2025-03-04 23:45:00.0125 Info Entity Framework Core 6.0.36 initialized 'GreetingContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.36' with options: None 
+2025-03-04 23:45:01.1397 Info Executed DbCommand (82ms) [Parameters=[@__id_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[Greeting]
+FROM [GreetMessages] AS [g]
+WHERE [g].[Id] = @__id_0 
+2025-03-04 23:45:01.3223 Info Executed DbCommand (5ms) [Parameters=[@p0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SET NOCOUNT ON;
+DELETE FROM [GreetMessages]
+WHERE [Id] = @p0;
+SELECT @@ROWCOUNT; 
+2025-03-04 23:45:01.3467 Info Executing OkObjectResult, writing value of type 'ModelLayer.Model.ResponseModel`1[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. 
+2025-03-04 23:45:01.3553 Info Executed action HelloGreetingApplication.Controllers.HelloGreetingController.DeleteGreeting (HelloGreetingApplication) in 2431.7855ms 
+2025-03-04 23:45:01.3553 Info Executed endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.DeleteGreeting (HelloGreetingApplication)' 
+2025-03-04 23:45:01.3553 Info Request finished HTTP/2 DELETE https://localhost:7245/HelloGreeting/DeleteGreeting/1 - - - 200 - application/json;+charset=utf-8 2490.5637ms 
+2025-03-04 23:45:09.9545 Info Request starting HTTP/2 GET https://localhost:7245/HelloGreeting/GetAllGreetings - - 
+2025-03-04 23:45:09.9545 Info Executing endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetAllGreetings (HelloGreetingApplication)' 
+2025-03-04 23:45:09.9545 Info Route matched with {action = "GetAllGreetings", controller = "HelloGreeting"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetAllGreetings() on controller HelloGreetingApplication.Controllers.HelloGreetingController (HelloGreetingApplication). 
+2025-03-04 23:45:09.9545 Info This is Info Message. 
+2025-03-04 23:45:09.9545 Error This is Error Message. 
+2025-03-04 23:45:09.9545 Warn This is Warning Message. 
+2025-03-04 23:45:09.9545 Info Entity Framework Core 6.0.36 initialized 'GreetingContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.36' with options: None 
+2025-03-04 23:45:09.9778 Info Executed DbCommand (9ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT [g].[Id], [g].[Greeting]
+FROM [GreetMessages] AS [g] 
+2025-03-04 23:45:09.9778 Info Executing OkObjectResult, writing value of type 'ModelLayer.Model.ResponseModel`1[[System.Collections.Generic.List`1[[ModelLayer.Model.GreetingModel, ModelLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'. 
+2025-03-04 23:45:09.9820 Info Executed action HelloGreetingApplication.Controllers.HelloGreetingController.GetAllGreetings (HelloGreetingApplication) in 20.7616ms 
+2025-03-04 23:45:09.9820 Info Executed endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetAllGreetings (HelloGreetingApplication)' 
+2025-03-04 23:45:09.9820 Info Request finished HTTP/2 GET https://localhost:7245/HelloGreeting/GetAllGreetings - - - 200 - application/json;+charset=utf-8 28.2934ms 
