@@ -16,24 +16,14 @@ namespace BusinessLayer.Services
             _greetingRL = greetingRL;
         }
 
-        public string greeting(string firstName, string lastName)
+        public string GetGreet()
         {
-            try
-            {
-                if (string.IsNullOrEmpty(firstName) && string.IsNullOrEmpty(lastName))
-                {
-                    _logger.Warn("Both First Name and Last Name are empty. Returning default greeting.");
-                    return _greetingRL.Greeting(null, null);
-                }
+            return "Hello World";
 
-                _logger.Info($"Generating greeting for First Name: {firstName}, Last Name: {lastName}");
-                return _greetingRL.Greeting(firstName, lastName);
-            }
-            catch (Exception ex)
-            {
-                _logger.Error(ex, "An error occurred while generating greeting.");
-                throw;
-            }
+        }
+        public string greeting(UserNameModel nameModel)
+        {
+            return _greetingRL.Greeting(nameModel);
         }
     }
 }

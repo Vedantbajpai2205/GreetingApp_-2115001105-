@@ -99,46 +99,28 @@ namespace HelloGreetingApplication.Controllers
             responseModel.Data = $"Key: {requestModel.key}, Deleted Successfully.";
             return Ok(responseModel);
         }
+
         [HttpGet]
-        [Route("GetGreet")]
-        public IActionResult GetGreeting(string? firstName, string? lastName)
+        [Route("GetHelloWorld")]
+        public string GetHello()
         {
-            try
-            {
-                ResponseModel<string> responseModel = new ResponseModel<string>();
-                string greetingMessage = string.Empty;
-
-                if (!string.IsNullOrEmpty(firstName) && !string.IsNullOrEmpty(lastName))
-                {
-                    greetingMessage = $"Hello Sir/Mam, {firstName} {lastName}";
-                }
-                else if (!string.IsNullOrEmpty(firstName))
-                {
-                    greetingMessage = $"Hello Sir/Mam, {firstName}";
-                }
-                else if (!string.IsNullOrEmpty(lastName))
-                {
-                    greetingMessage = $"Hello Mr/Mrs, {lastName}";
-                }
-                else
-                {
-                    greetingMessage = "Hello World";
-                }
-
-                responseModel.Success = true;
-                responseModel.Message = "Greeting Generated Successfully";
-                responseModel.Data = greetingMessage;
-
-                logger.Info($"Greeting Message: {greetingMessage}");
-
-                return Ok(responseModel);
-            }
-            catch (Exception ex)
-            {
-                logger.Error($"Exception Occurred: {ex.Message}");
-                return StatusCode(500, "Something went wrong: " + ex.Message);
-            }
+            return _greetingBL.GetGreet();
         }
+
+
+
+        [HttpPost]
+        [Route("PostGreet")]
+        public IActionResult PostGreeting(UserNameModel nameModel)
+        {
+            var result = _greetingBL.greeting(nameModel);
+            ResponseModel<string> responseModel = new ResponseModel<string>();
+            responseModel.Success = true;
+            responseModel.Message = "Greet Message With Name";
+            responseModel.Data = result;
+            return Ok(responseModel);
+        }
+
     }
 }
 

@@ -145,27 +145,59 @@
         }
       }
     },
-    "/HelloGreeting/GetGreet": {
+    "/HelloGreeting/GetHelloWorld": {
       "get": {
         "tags": [
           "HelloGreeting"
         ],
-        "parameters": [
-          {
-            "name": "firstName",
-            "in": "query",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "lastName",
-            "in": "query",
-            "schema": {
-              "type": "string"
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
             }
           }
+        }
+      }
+    },
+    "/HelloGreeting/PostGreet": {
+      "post": {
+        "tags": [
+          "HelloGreeting"
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserNameModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserNameModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserNameModel"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"
@@ -184,6 +216,20 @@
             "nullable": true
           },
           "value": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserNameModel": {
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string",
+            "nullable": true
+          },
+          "lastName": {
             "type": "string",
             "nullable": true
           }

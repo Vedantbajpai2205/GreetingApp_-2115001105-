@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace ModelLayer.Model
 {
-    public class RequestModel
+    public class UserNameModel
     {
-        public string key { get; set; } = "";
-        public string value { get; set; } = "";
+        public string FirstName { get; set; } 
 
+        public string LastName { get; set; } 
     }
 }
