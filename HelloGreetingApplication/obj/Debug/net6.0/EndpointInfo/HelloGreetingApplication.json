@@ -258,6 +258,18 @@
           }
         }
       }
+    },
+    "/HelloGreeting/GetAllGreetings": {
+      "get": {
+        "tags": [
+          "HelloGreeting"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   },
   "components": {

@@ -45,6 +45,11 @@ namespace RepositoryLayer.Services
             return null;
         }
 
+        public List<GreetingEntity> GetAllGreetings()
+        {
+            return _context.GreetMessages.ToList();  
+        }
+
         public string Greeting(UserNameModel nameModel)
         {
             string greetingMessage = string.Empty;

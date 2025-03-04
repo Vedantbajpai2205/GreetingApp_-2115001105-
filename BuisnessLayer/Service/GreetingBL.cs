@@ -34,5 +34,18 @@ namespace BusinessLayer.Services
         {
             return _greetingRL.GetGreetingById(id);
         }
+        public List<GreetingModel> GetAllGreetings()
+        {
+            var entityList = _greetingRL.GetAllGreetings();  
+            if (entityList != null)
+            {
+                return entityList.Select(g => new GreetingModel
+                {
+                    id = g.Id,
+                    GreetingMessage = g.Greeting
+                }).ToList();  // Converting List of Entity to List of Model
+            }
+            return null;
+        }
     }
 }
