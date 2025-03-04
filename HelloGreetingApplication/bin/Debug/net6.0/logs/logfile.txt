@@ -981,3 +981,33 @@ WHERE @@ROWCOUNT = 1 AND [Id] = scope_identity();
 2025-03-04 22:05:56.6876 Info Executed action HelloGreetingApplication.Controllers.HelloGreetingController.GreetMessage (HelloGreetingApplication) in 2434.3095ms 
 2025-03-04 22:05:56.6876 Info Executed endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GreetMessage (HelloGreetingApplication)' 
 2025-03-04 22:05:56.7067 Info Request finished HTTP/2 POST https://localhost:7245/HelloGreeting/greetmessage application/json 29 - 200 - application/json;+charset=utf-8 2501.0577ms 
+2025-03-04 23:02:15.7619 Info Now listening on: https://localhost:7245 
+2025-03-04 23:02:15.8139 Info Now listening on: http://localhost:5176 
+2025-03-04 23:02:15.8899 Info Application started. Press Ctrl+C to shut down. 
+2025-03-04 23:02:15.8899 Info Hosting environment: Development 
+2025-03-04 23:02:15.8899 Info Content root path: C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\ 
+2025-03-04 23:02:17.8941 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.html - - 
+2025-03-04 23:02:18.3234 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.html - - - 200 - text/html;charset=utf-8 433.3915ms 
+2025-03-04 23:02:18.4211 Info Request starting HTTP/2 GET https://localhost:7245/swagger/index.js - - 
+2025-03-04 23:02:18.4211 Info Request starting HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - 
+2025-03-04 23:02:18.4211 Info Request finished HTTP/2 GET https://localhost:7245/swagger/index.js - - - 200 - application/javascript;charset=utf-8 3.1358ms 
+2025-03-04 23:02:18.4211 Info Request finished HTTP/2 GET https://localhost:7245/_framework/aspnetcore-browser-refresh.js - - - 200 12380 application/javascript;+charset=utf-8 10.1614ms 
+2025-03-04 23:02:18.4862 Info Request starting HTTP/2 GET https://localhost:7245/_vs/browserLink - - 
+2025-03-04 23:02:18.6801 Info Request finished HTTP/2 GET https://localhost:7245/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 193.8755ms 
+2025-03-04 23:02:18.8641 Info Request starting HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - 
+2025-03-04 23:02:18.8719 Info Request finished HTTP/2 GET https://localhost:7245/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 7.8562ms 
+2025-03-04 23:02:31.4410 Info Request starting HTTP/2 GET https://localhost:7245/HelloGreeting/GetGreetingById/1 - - 
+2025-03-04 23:02:31.4500 Info Executing endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetGreetingById (HelloGreetingApplication)' 
+2025-03-04 23:02:31.4860 Info Route matched with {action = "GetGreetingById", controller = "HelloGreeting"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult GetGreetingById(Int32) on controller HelloGreetingApplication.Controllers.HelloGreetingController (HelloGreetingApplication). 
+2025-03-04 23:02:31.8035 Info This is Info Message. 
+2025-03-04 23:02:31.8035 Error This is Error Message. 
+2025-03-04 23:02:31.8035 Warn This is Warning Message. 
+2025-03-04 23:02:32.4607 Info Entity Framework Core 6.0.36 initialized 'GreetingContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.36' with options: None 
+2025-03-04 23:02:33.4963 Info Executed DbCommand (92ms) [Parameters=[@__ID_0='?' (DbType = Int32)], CommandType='Text', CommandTimeout='30']
+SELECT TOP(1) [g].[Id], [g].[Greeting]
+FROM [GreetMessages] AS [g]
+WHERE [g].[Id] = @__ID_0 
+2025-03-04 23:02:33.5806 Info Executing OkObjectResult, writing value of type 'ModelLayer.Model.ResponseModel`1[[ModelLayer.Model.GreetingModel, ModelLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'. 
+2025-03-04 23:02:33.5896 Info Executed action HelloGreetingApplication.Controllers.HelloGreetingController.GetGreetingById (HelloGreetingApplication) in 2098.9219ms 
+2025-03-04 23:02:33.5896 Info Executed endpoint 'HelloGreetingApplication.Controllers.HelloGreetingController.GetGreetingById (HelloGreetingApplication)' 
+2025-03-04 23:02:33.5896 Info Request finished HTTP/2 GET https://localhost:7245/HelloGreeting/GetGreetingById/1 - - - 200 - application/json;+charset=utf-8 2158.9722ms 

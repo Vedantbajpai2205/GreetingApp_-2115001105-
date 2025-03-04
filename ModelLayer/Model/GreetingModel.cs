@@ -9,5 +9,7 @@ namespace ModelLayer.Model
     public class GreetingModel
     {
         public string GreetingMessage { get; set; } = ""; 
+
+        public int id { get; set; }
     }
 }

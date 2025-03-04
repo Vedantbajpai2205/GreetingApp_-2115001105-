@@ -11,5 +11,7 @@ namespace RepositoryLayer.Interface
     {
         public string Greeting(UserNameModel nameModel);
         public bool GreetMessage(GreetingModel greetModel);
+
+        public GreetingModel GetGreetingById(int ID);
     }
 }
