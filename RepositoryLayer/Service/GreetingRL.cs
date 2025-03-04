@@ -1,13 +1,36 @@
 ﻿using RepositoryLayer.Interface;
+using RepositoryLayer.Context;
 using System;
 using ModelLayer.Model;
 using NLog;
+using RepositoryLayer.Entity;
 
 namespace RepositoryLayer.Services
 {
     public class GreetingRL : IGreetingRL
     {
-        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private static readonly Logger logger = LogManager.GetCurrentClassLogger();
+        private readonly GreetingContext _context;
+
+        public GreetingRL(GreetingContext context)
+        {
+            _context = context;
+        }
+        public bool GreetMessage(GreetingModel greetModel)
+        {
+            if (_context.GreetMessages.Any(greet => greet.Greeting == greetModel.GreetingMessage))
+            {
+                return false;
+            }
+            var greetingEntity = new GreetingEntity
+            {
+                Greeting = greetModel.GreetingMessage,
+            };
+            _context.GreetMessages.Add(greetingEntity);
+            _context.SaveChanges();
+            return true;
+        }
+
         public string Greeting(UserNameModel nameModel)
         {
             string greetingMessage = string.Empty;
@@ -29,7 +52,7 @@ namespace RepositoryLayer.Services
                 greetingMessage = "Hello World";
             }
 
-            _logger.Info($"Generated Greeting: {greetingMessage}");
+            logger.Info($"Generated Greeting: {greetingMessage}");
             return greetingMessage;
         }
     }

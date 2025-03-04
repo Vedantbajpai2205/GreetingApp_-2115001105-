@@ -11,7 +11,7 @@ namespace HelloGreetingApplication.Controllers
     [Route("[controller]")]
     public class HelloGreetingController : ControllerBase
     {
-        
+
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
         private readonly IGreetingBL _greetingBL;
 
@@ -31,7 +31,7 @@ namespace HelloGreetingApplication.Controllers
         public IActionResult Get()
         {
             logger.Info("Received a GET request for greeting message.");
-            ResponseModel<string> responseModel = new ResponseModel< string>();
+            ResponseModel<string> responseModel = new ResponseModel<string>();
             responseModel.Message = "Hello to Greeting App API Endpoint Hit";
             responseModel.Success = true;
             responseModel.Data = "Hello,World";
@@ -44,7 +44,7 @@ namespace HelloGreetingApplication.Controllers
         /// <param name="requestModel"></param>
         /// <returns>request model</returns>
         [HttpPost]
-        public IActionResult Post(RequestModel requestModel) 
+        public IActionResult Post(RequestModel requestModel)
         {
             logger.Error("Product is null");
             ResponseModel<string> responseModel = new ResponseModel<string>();
@@ -59,7 +59,7 @@ namespace HelloGreetingApplication.Controllers
         /// <param name="requestModel">Updated greeting message data</param>
         /// <returns>Updated greeting message</returns>
         [HttpPut]
-        public IActionResult Put(RequestModel requestModel) 
+        public IActionResult Put(RequestModel requestModel)
         {
             ResponseModel<string> responseModel = new ResponseModel<string>();
             responseModel.Message = "Greeting message updated successfully.";
@@ -90,7 +90,7 @@ namespace HelloGreetingApplication.Controllers
         /// <param name="requestModel">ID of the greeting message to delete</param>
         /// <returns>request model</returns>
         [HttpDelete("{key}")]
-        public IActionResult Delete(RequestModel requestModel) 
+        public IActionResult Delete(RequestModel requestModel)
         {
             logger.Warn("Product not found.");
             ResponseModel<string> responseModel = new ResponseModel<string>();
@@ -108,7 +108,6 @@ namespace HelloGreetingApplication.Controllers
         }
 
 
-
         [HttpPost]
         [Route("PostGreet")]
         public IActionResult PostGreeting(UserNameModel nameModel)
@@ -119,6 +118,32 @@ namespace HelloGreetingApplication.Controllers
             responseModel.Message = "Greet Message With Name";
             responseModel.Data = result;
             return Ok(responseModel);
+        }
+
+        [HttpPost("greetmessage")]
+
+        public IActionResult GreetMessage(GreetingModel greetModel)
+        {
+            try
+            {
+                var response = new ResponseModel<string>();
+                bool isMessageGrret = _greetingBL.GreetMessage(greetModel);
+                if (isMessageGrret)
+                {
+                    response.Success = true;
+                    response.Message = "Greet Message!";
+                    response.Data = greetModel.ToString();
+                    return Ok(response);
+                }
+                response.Success = false;
+                response.Message = "Greet Message Already Exist.";
+                return Conflict(response);
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error occurred during login.");
+                return StatusCode(500, "Internal Server Error");
+            }
         }
 
     }

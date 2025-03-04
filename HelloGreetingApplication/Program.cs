@@ -1,21 +1,25 @@
 using BuisnessLayer.Interface;
 using BusinessLayer.Services;
+using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Config;
 using NLog.Web;
+using RepositoryLayer.Context;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Services;
 
-    var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
+var connectionString = builder.Configuration.GetConnectionString("SqlConnection");//used for connection to database
+builder.Services.AddDbContext<GreetingContext>(options => options.UseSqlServer(connectionString));
 
-    // Add services to the container.
+// Add services to the container.
 
-    builder.Services.AddControllers();
+builder.Services.AddControllers();
 builder.Services.AddScoped<IGreetingBL, GreetingBL>();
 builder.Services.AddScoped<IGreetingRL, GreetingRL>();
 
 builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen();
 
     //logger using nlog
     var logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
