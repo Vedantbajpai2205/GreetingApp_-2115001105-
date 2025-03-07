@@ -2,6 +2,7 @@ using BuisnessLayer.Interface;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 using NLog;
+using Middleware.GlobalExceptionHandler;
 namespace HelloGreetingApplication.Controllers
 {
     /// <summary>
@@ -142,7 +143,8 @@ namespace HelloGreetingApplication.Controllers
             catch (Exception ex)
             {
                 logger.Error(ex, "Error occurred during login.");
-                return StatusCode(500, "Internal Server Error");
+                var errorResponse = ExceptionHandler.CreateErrorResponse(ex);
+                return StatusCode(500, errorResponse);
             }
         }
         [HttpGet("GetGreetingById/{id}")]
@@ -164,10 +166,9 @@ namespace HelloGreetingApplication.Controllers
                 return NotFound(response);
             }
             catch (Exception ex)
-            {
-                response.Success = false;
-                response.Message = $"An error occurred: {ex.Message}";
-                return StatusCode(500, response);
+            { 
+                var errorResponse = ExceptionHandler.CreateErrorResponse(ex);
+                return StatusCode(500, errorResponse);
             }
         }
         [HttpGet("GetAllGreetings")]
@@ -190,9 +191,8 @@ namespace HelloGreetingApplication.Controllers
             }
             catch (Exception ex)
             {
-                response.Success = false;
-                response.Message = $"An error occurred: {ex.Message}";
-                return StatusCode(500, response);
+                var errorResponse = ExceptionHandler.CreateErrorResponse(ex);
+                return StatusCode(500, errorResponse);
             }
         }
         [HttpPut("EditGreeting/{id}")]
@@ -215,9 +215,8 @@ namespace HelloGreetingApplication.Controllers
             }
             catch (Exception ex)
             {
-                response.Success = false;
-                response.Message = $"An error occurred: {ex.Message}";
-                return StatusCode(500, response);
+                var errorResponse = ExceptionHandler.CreateErrorResponse(ex);
+                return StatusCode(500, errorResponse);
             }
         }
 
@@ -240,9 +239,8 @@ namespace HelloGreetingApplication.Controllers
             }
             catch (Exception ex)
             {
-                response.Success = false;
-                response.Message = $"An error occurred: {ex.Message}";
-                return StatusCode(500, response);
+                var errorResponse = ExceptionHandler.CreateErrorResponse(ex);
+                return StatusCode(500, errorResponse);
             }
         }
 
