@@ -19,10 +19,6 @@ namespace HelloGreetingApplication.Controllers
         public HelloGreetingController(IGreetingBL greetingBL)
         {
             _greetingBL = greetingBL;
-            logger.Info("This is Info Message.");
-            logger.Error("This is Error Message.");
-            logger.Debug("This is Debug Message.");
-            logger.Warn("This is Warning Message.");
         }
         /// <summary>
         /// Get method to Greeting Message
@@ -243,7 +239,6 @@ namespace HelloGreetingApplication.Controllers
                 return StatusCode(500, errorResponse);
             }
         }
-
     }
 }
 

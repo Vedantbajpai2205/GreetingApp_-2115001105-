@@ -182,3 +182,4 @@ C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\runt
 C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Middleware.dll
 C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Middleware.pdb
+C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\BCrypt.Net-Next.dll
