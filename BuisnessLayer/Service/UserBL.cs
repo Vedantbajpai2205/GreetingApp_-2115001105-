@@ -1,8 +1,11 @@
-﻿using System.Security.Cryptography;
+﻿using System.Net.Mail;
+using System.Net;
+using System.Security.Cryptography;
 using BusinessLayer.Interface;
 using ModelLayer.Model;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
+using NLog;
 
 namespace BusinessLayer.Service
 {
@@ -12,6 +15,7 @@ namespace BusinessLayer.Service
         private const int SaltSize = 16;
         private const int HashSize = 20;
         private const int Iterations = 10000;
+        private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         public UserBL(IUserRL userRL)
         {
@@ -73,6 +77,39 @@ namespace BusinessLayer.Service
                 }
             }
             return true;
+        }
+        public bool SendResetEmail(string email, string token)
+        {
+            try
+            {
+                var fromEmail = "your-email@example.com";
+                var fromPassword = "your-email-password"; // Use environment variables for security
+                var smtpClient = new SmtpClient("smtp.your-email-provider.com")
+                {
+                    Port = 587,
+                    Credentials = new NetworkCredential(fromEmail, fromPassword),
+                    EnableSsl = true,
+                };
+
+                var resetUrl = $"https://your-frontend-app.com/reset-password?token={token}";
+                var mailMessage = new MailMessage
+                {
+                    From = new MailAddress(fromEmail),
+                    Subject = "Password Reset Request",
+                    Body = $"Click <a href='{resetUrl}'>here</a> to reset your password.",
+                    IsBodyHtml = true,
+                };
+
+                mailMessage.To.Add(email);
+                smtpClient.Send(mailMessage);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                
+                _logger.Error($"Error in SendResetEmail: {ex.Message}");
+                return false;
+            }
         }
     }
 }
