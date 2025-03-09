@@ -33,7 +33,19 @@ namespace RepositoryLayer.Service
             return true;
         }
 
+        //public string Login(string email, string password)
+        //{
+        //    var user = context.Users.FirstOrDefault(u => u.Email == email);
+        //    if (user == null)
+        //        return "Invalid Email";
+
+        //    if (VerifyPassword(password, user.Password))
+        //        return "Login Successful";
+
+        //    return "Invalid Password";
+        //}
         public UserEntity GetUserByEmail(string email)
+
         {
             return context.Users.FirstOrDefault(user => user.Email == email);
         }
@@ -53,12 +65,13 @@ namespace RepositoryLayer.Service
             var user = context.Users.FirstOrDefault(u => u.Email == email);
             if (user != null)
             {
-                user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+                user.Password = HashPassword(newPassword); // Use the same PBKDF2 hashing
                 context.SaveChanges();
-                return true; // Return true if password reset is successful
+                return true;
             }
-            return false; // Return false if user not found
+            return false;
         }
+
         private string HashPassword(string password)
         {
             byte[] salt;

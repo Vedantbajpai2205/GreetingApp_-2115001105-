@@ -11,6 +11,7 @@ namespace BusinessLayer.Interface
         public bool CheckEmailPassword(string email, string password, UserEntity result);
         
         public bool ForgetPassword(string email);
+        public bool SendResetEmail(string email, string token);
 
         public bool ResetPassword(string email, string newPassword);
     }
