@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 using NLog;
 using RepositoryLayer.Entity;
+using HelloGreeting.Helper;
 
 namespace HelloGreetingApplication.Controllers
 {
@@ -15,11 +16,12 @@ namespace HelloGreetingApplication.Controllers
     {
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
         private readonly IUserBL _userBL;
-
-        public UserController(IUserBL userBL)
+        private readonly JwtTokenHelper _jwtTokenHelper;
+        public UserController(IUserBL userBL, JwtTokenHelper jwtTokenHelper)
         {
             _userBL = userBL;
             _logger.Info("User Controller initialized successfully");
+            _jwtTokenHelper = jwtTokenHelper;
         }
 
         /// <summary>
@@ -74,23 +76,22 @@ namespace HelloGreetingApplication.Controllers
             var response = new ResponseModel<string>();
             try
             {
-                var result = _userBL.Login(loginModel.Email, loginModel.Password); // Pass Email and Password Separately
-                if (result != null)
+                _logger.Info("Login attempt for user: {0}", loginModel.Email);
+                var user = _userBL.GetUserByEmail(loginModel.Email);
+
+                if (user == null || !_userBL.CheckEmailPassword(loginModel.Email, loginModel.Password, user))
                 {
-                    response.Success = true;
-                    response.Message = "Login Successful";
-                    response.Data = result;
-                    return Ok(response);
+                    _logger.Warn("Invalid login attempt for user: {0}", loginModel.Email);
+                    return Unauthorized(new { Success = false, Message = "Invalid username or password." });
                 }
-                response.Success = false;
-                response.Message = "Invalid Credentials";
-                return Unauthorized(response);
+                var token = _jwtTokenHelper.GenerateToken(user);
+                _logger.Info("User {0} logged in successfully.", loginModel.Email);
+                return Ok(new { Success = true, Message = "Login Successful.", Token = token });
             }
             catch (Exception ex)
             {
-                response.Success = false;
-                response.Message = $"An error occurred: {ex.Message}";
-                return StatusCode(500, response);
+                _logger.Error(ex, "Login failed.");
+                return BadRequest(new { Success = false, Message = "Login failed.", Error = ex.Message });
             }
         }
 
