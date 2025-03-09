@@ -33,16 +33,9 @@ namespace RepositoryLayer.Service
             return true;
         }
 
-        public string Login(string email, string password)
+        public UserEntity GetUserByEmail(string email)
         {
-            var user = context.Users.FirstOrDefault(u => u.Email == email);
-            if (user == null)
-                return "Invalid Email";
-
-            if (VerifyPassword(password, user.Password))
-                return "Login Successful";
-
-            return "Invalid Password";
+            return context.Users.FirstOrDefault(user => user.Email == email);
         }
 
         public bool ForgetPassword(string email)
@@ -78,22 +71,6 @@ namespace RepositoryLayer.Service
                 Array.Copy(hash, 0, hashBytes, SaltSize, HashSize);
                 return Convert.ToBase64String(hashBytes);
             }
-        }
-        private bool VerifyPassword(string enteredPassword, string storedPassword)
-        {
-            byte[] hashBytes = Convert.FromBase64String(storedPassword);
-            byte[] salt = new byte[SaltSize];
-            Array.Copy(hashBytes, 0, salt, 0, SaltSize);
-            using (var pbkdf2 = new Rfc2898DeriveBytes(enteredPassword, salt, Iterations))
-            {
-                byte[] hash = pbkdf2.GetBytes(HashSize);
-                for (int i = 0; i < HashSize; i++)
-                {
-                    if (hashBytes[i + SaltSize] != hash[i])
-                        return false;
-                }
-            }
-            return true;
         }
     }
 }
