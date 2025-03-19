@@ -11,13 +11,13 @@ namespace BuisnessLayer.Interface
     {
         public string GetGreet();
         public string greeting(UserNameModel userName);
-        public bool GreetMessage(GreetingModel greetModel);
+        public bool GreetMessage(RequestGreetingModel greetModel);
 
-        public GreetingModel GetGreetingById(int id);
-        public List<GreetingModel> GetAllGreetings();
+        public RequestGreetingModel GetGreetingById(int id, string email);
+        public List<RequestGreetingModel> GetAllGreetings(string email);
 
-        public GreetingModel EditGreeting(int id, GreetingModel greetingModel);
-        public bool DeleteGreeting(int id);
+        public GreetingModel EditGreeting(int id, GreetingModel greetingModel, string email);
+        public bool DeleteGreeting(int id, string email);
 
     }
 }

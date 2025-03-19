@@ -184,3 +184,7 @@ C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Midd
 C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Middleware.pdb
 C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\BCrypt.Net-Next.dll
 C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Dapper.dll
+C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\Pipelines.Sockets.Unofficial.dll
+C:\Clone\GreetingApp_-2115001105-\HelloGreetingApplication\bin\Debug\net6.0\StackExchange.Redis.dll

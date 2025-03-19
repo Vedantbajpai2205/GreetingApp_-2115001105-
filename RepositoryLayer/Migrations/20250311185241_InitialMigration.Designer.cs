@@ -8,11 +8,11 @@ using RepositoryLayer.Context;
 
 #nullable disable
 
-namespace RepositoryLayer.Migrations.User
+namespace RepositoryLayer.Migrations
 {
-    [DbContext(typeof(UserContext))]
-    [Migration("20250307102830_InitiallyCreate")]
-    partial class InitiallyCreate
+    [DbContext(typeof(GreetingContext))]
+    [Migration("20250311185241_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -22,6 +22,28 @@ namespace RepositoryLayer.Migrations.User
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("RepositoryLayer.Entity.GreetingEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Greeting")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("GreetMessages");
+                });
 
             modelBuilder.Entity("RepositoryLayer.Entity.UserEntity", b =>
                 {
@@ -50,6 +72,22 @@ namespace RepositoryLayer.Migrations.User
                     b.HasKey("UserId");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("RepositoryLayer.Entity.GreetingEntity", b =>
+                {
+                    b.HasOne("RepositoryLayer.Entity.UserEntity", "User")
+                        .WithMany("Greetings")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RepositoryLayer.Entity.UserEntity", b =>
+                {
+                    b.Navigation("Greetings");
                 });
 #pragma warning restore 612, 618
         }

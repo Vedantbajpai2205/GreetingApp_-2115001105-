@@ -4,8 +4,10 @@ using System.Security.Cryptography;
 using BusinessLayer.Interface;
 using ModelLayer.Model;
 using RepositoryLayer.Entity;
+using StackExchange.Redis;
 using RepositoryLayer.Interface;
 using NLog;
+using System.Text.Json;
 
 namespace BusinessLayer.Service
 {
@@ -16,12 +18,28 @@ namespace BusinessLayer.Service
         private const int HashSize = 20;
         private const int Iterations = 10000;
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly IDatabase _cache;
 
-        public UserBL(IUserRL userRL)
+        public UserBL(IUserRL userRL, IConnectionMultiplexer redis)
         {
             _userRL = userRL;
+            _cache = redis.GetDatabase();
         }
+        public async Task<IEnumerable<UserEntity>> GetUsersAsync()
+        {
+            string cacheKey = "users_list";
 
+            // Try getting data from Redis cache
+            var cachedData = await _cache.StringGetAsync(cacheKey);
+            if (!cachedData.IsNullOrEmpty)
+            {
+                return JsonSerializer.Deserialize<IEnumerable<UserEntity>>(cachedData);
+            }
+            var products = await _userRL.GetUsersAsync();
+            await _cache.StringSetAsync(cacheKey, JsonSerializer.Serialize(products), TimeSpan.FromMinutes(10));
+
+            return products;
+        }
         public bool Register(UserEntity user)
         {
             return _userRL.Register(user);

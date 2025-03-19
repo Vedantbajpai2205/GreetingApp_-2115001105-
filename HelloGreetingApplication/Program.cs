@@ -14,12 +14,12 @@ using HelloGreeting.Helper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using StackExchange.Redis;
 
 var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SqlConnection");//used for connection to database
 builder.Services.AddDbContext<GreetingContext>(options => options.UseSqlServer(connectionString));
-var ConnectionString = builder.Configuration.GetConnectionString("SqlConnection");
-builder.Services.AddDbContext<UserContext>(options => options.UseSqlServer(ConnectionString));
+
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 // jwt implementation
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -37,6 +37,12 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
 
     });
+
+// Configure Redis connection
+var redisConfig = builder.Configuration.GetSection("Redis:ConnectionString").Value;
+builder.Services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConfig));
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -46,6 +52,8 @@ builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserRL, UserRL>();
 builder.Services.AddScoped<JwtTokenHelper>();
 builder.Services.AddScoped<EmailService>();
+
+
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
