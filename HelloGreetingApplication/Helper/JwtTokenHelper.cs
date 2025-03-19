@@ -15,14 +15,12 @@ namespace HelloGreeting.Helper
         {
             _configuration = configuration;
         }
-
         public string GenerateToken(UserEntity user)
         {
             if (user == null)
             {
                 throw new ArgumentNullException(nameof(user), "User object is null.");
             }
-
             var jwtSettings = _configuration.GetSection("Jwt");
             if (jwtSettings == null)
             {

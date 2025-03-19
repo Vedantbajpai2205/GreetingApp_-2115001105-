@@ -7,20 +7,30 @@ using System.Security.Cryptography;
 using System.Text;
 using RepositoryLayer.Context;
 using NLog;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Data.SqlClient;
+using Dapper;
 
 namespace RepositoryLayer.Service
 {
     public class UserRL : IUserRL
     {
         private static readonly Logger logger = LogManager.GetCurrentClassLogger();
-        private readonly UserContext context;
+        private readonly GreetingContext context;
+        private readonly string _connectionString;
         private const int SaltSize = 16;
         private const int HashSize = 20;
         private const int Iterations = 10000;
 
-        public UserRL(UserContext context)
+        public UserRL(GreetingContext context, IConfiguration configuration)
         {
             this.context = context;
+            _connectionString = configuration.GetConnectionString("SqlConnection");
+        }
+        public async Task<IEnumerable<UserEntity>> GetUsersAsync()
+        {
+            using var connection = new SqlConnection(_connectionString);
+            return await connection.QueryAsync<UserEntity>("SELECT * FROM Users");
         }
         public bool Register(UserEntity user)
         {

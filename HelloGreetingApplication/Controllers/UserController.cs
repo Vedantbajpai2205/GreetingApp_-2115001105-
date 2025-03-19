@@ -26,6 +26,13 @@ namespace HelloGreetingApplication.Controllers
             _jwtTokenHelper = jwtTokenHelper;
             _emailService = emailService;
         }
+        [HttpGet]
+        [Route("GetUsers")]//to check redis
+        public async Task<ActionResult<IEnumerable<UserEntity>>> GetUsers()
+        {
+            var Users = await _userBL.GetUsersAsync();
+            return Ok(Users);
+        }
 
         /// <summary>
         /// API to Register a New User

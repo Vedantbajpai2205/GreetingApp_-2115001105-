@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Model;
 using NLog;
 using Middleware.GlobalExceptionHandler;
+using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 namespace HelloGreetingApplication.Controllers
 {
     /// <summary>
@@ -117,87 +119,109 @@ namespace HelloGreetingApplication.Controllers
             return Ok(responseModel);
         }
 
-        [HttpPost("greetmessage")]
-
-        public IActionResult GreetMessage(GreetingModel greetModel)
+        [HttpPost("AddGreetMessage")]
+        public IActionResult GreetMessage([FromBody] RequestGreetingModel greetModel)
         {
+            var response = new ResponseModel<string>();
             try
             {
-                var response = new ResponseModel<string>();
-                bool isMessageGrret = _greetingBL.GreetMessage(greetModel);
-                if (isMessageGrret)
+                logger.Info("UserId in request: {greetModel.UserId}");
+                bool isMessageGreet = _greetingBL.GreetMessage(greetModel);
+                if (isMessageGreet)
                 {
                     response.Success = true;
-                    response.Message = "Greet Message!";
-                    response.Data = greetModel.ToString();
+                    response.Message = "Greet Message Created Successfully!";
+                    response.Data = Newtonsoft.Json.JsonConvert.SerializeObject(greetModel);
                     return Ok(response);
                 }
                 response.Success = false;
-                response.Message = "Greet Message Already Exist.";
+                response.Message = "Greet Message Already Exists.";
                 return Conflict(response);
             }
             catch (Exception ex)
             {
-                logger.Error(ex, "Error occurred during login.");
-                var errorResponse = ExceptionHandler.CreateErrorResponse(ex);
+                var innerExceptionMessage = ex.InnerException?.Message ?? ex.Message;
+                var errorResponse = new
+                {
+                    success = false,
+                    message = "An Error occurred",
+                    error = innerExceptionMessage
+                };
+
                 return StatusCode(500, errorResponse);
             }
         }
         [HttpGet("GetGreetingById/{id}")]
+        [Authorize]
         public IActionResult GetGreetingById(int id)
         {
-            var response = new ResponseModel<GreetingModel>();
-            try
-            {
-                var result = _greetingBL.GetGreetingById(id);
-                if (result != null)
-                {
-                    response.Success = true;
-                    response.Message = "Greeting Message Found";
-                    response.Data = result;
-                    return Ok(response);
-                }
-                response.Success = false;
-                response.Message = "Greeting Message Not Found";
-                return NotFound(response);
-            }
-            catch (Exception ex)
-            { 
-                var errorResponse = ExceptionHandler.CreateErrorResponse(ex);
-                return StatusCode(500, errorResponse);
-            }
+            var emailFromToken = User.FindFirst(ClaimTypes.Email)?.Value;
+
+            if (string.IsNullOrEmpty(emailFromToken))
+                return Unauthorized("Token iis Invalid or Email claim missing.");
+
+            var greeting = _greetingBL.GetGreetingById(id, emailFromToken);
+
+            if (greeting == null)
+                return NotFound("Greeting Messages not found or Unauthorized Access Occur.");
+
+            return Ok(greeting);
         }
         [HttpGet("GetAllGreetings")]
+        [Authorize]
         public IActionResult GetAllGreetings()
         {
-            ResponseModel<List<GreetingModel>> response = new ResponseModel<List<GreetingModel>>();
-            try
+            var emailClaim = User.FindFirst(ClaimTypes.Email)?.Value;
+
+            if (string.IsNullOrEmpty(emailClaim))
             {
-                var result = _greetingBL.GetAllGreetings();
-                if (result != null && result.Count > 0)
+                return Unauthorized(new ResponseModel<string>
                 {
-                    response.Success = true;
-                    response.Message = "Greeting Messages Found";
-                    response.Data = result;
-                    return Ok(response);
-                }
-                response.Success = false;
-                response.Message = "No Greeting Messages Found";
-                return NotFound(response);
+                    Success = false,
+                    Message = "Unauthorized access. Email ID is missing or invalid.",
+                    Data = null
+                });
             }
-            catch (Exception ex)
+
+            var greetings = _greetingBL.GetAllGreetings(emailClaim);
+
+            if (greetings == null || !greetings.Any())
             {
-                var errorResponse = ExceptionHandler.CreateErrorResponse(ex);
-                return StatusCode(500, errorResponse);
+                return NotFound(new ResponseModel<string>
+                {
+                    Success = false,
+                    Message = "No greetings found for the provided email.",
+                    Data = null
+                });
             }
+
+            return Ok(new ResponseModel<List<RequestGreetingModel>>
+            {
+                Success = true,
+                Message = "Greetings retrieved successfully.",
+                Data = greetings
+            });
         }
         [HttpPut("EditGreeting/{id}")]
+        [Authorize]
         public IActionResult EditGreeting(int id, GreetingModel greetModel)
         {
+            var emailClaim = User.FindFirst(ClaimTypes.Email)?.Value;
+
+            if (string.IsNullOrEmpty(emailClaim))
+            {
+                return Unauthorized(new ResponseModel<string>
+                {
+                    Success = false,
+                    Message = "Unauthorized access. Email ID is missing or invalid.",
+                    Data = null
+                });
+            }
+
             ResponseModel<GreetingModel> response = new ResponseModel<GreetingModel>();
             try
             {
-                var result = _greetingBL.EditGreeting(id, greetModel);
+                var result = _greetingBL.EditGreeting(id, greetModel, emailClaim);
                 if (result != null)
                 {
                     response.Success = true;
@@ -217,12 +241,25 @@ namespace HelloGreetingApplication.Controllers
         }
 
         [HttpDelete("DeleteGreeting/{id}")]
+        [Authorize]
         public IActionResult DeleteGreeting(int id)
         {
+            var emailClaim = User.FindFirst(ClaimTypes.Email)?.Value;
+
+            if (string.IsNullOrEmpty(emailClaim))
+            {
+                return Unauthorized(new ResponseModel<string>
+                {
+                    Success = false,
+                    Message = "Unauthorized access. Email ID is missing or invalid.",
+                    Data = null
+                });
+            }
+
             ResponseModel<string> response = new ResponseModel<string>();
             try
             {
-                bool result = _greetingBL.DeleteGreeting(id);
+                bool result = _greetingBL.DeleteGreeting(id, emailClaim);
                 if (result)
                 {
                     response.Success = true;
